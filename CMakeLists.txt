@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(maven)
+project(mvn)
 
 # Setze den C++ Standard
 set(CMAKE_CXX_STANDARD 17)
@@ -9,9 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(include)
 
 # Erstelle die Shared Library
-add_library(maven SHARED src/maven.cpp)
+add_library(mvn SHARED src/mvn.cpp)
 
 # Verlinke die dl-Bibliothek auf Linux
 if (UNIX)
-    target_link_libraries(maven PRIVATE dl)
+    target_link_libraries(mvn PRIVATE dl)
 endif()
