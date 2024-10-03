@@ -36,6 +36,8 @@ int Maven::uninstall(std::string package) {
     
     std::string mvnPath = pathToPackage + "/" + innerPath + "/" + versionPath;
     
+    std::cout << "path to delete: " << mvnPath << std::endl;
+    
     if(std::filesystem::exists(mvnPath)) {
         std::filesystem::remove_all(mvnPath);
     }
@@ -89,7 +91,7 @@ void Maven::setToolkit(PackageManagerToolkit * toolkit) {
 }
 
 void Maven::checkMaven() {
-    std::string mavenCall = "mvn -v";
+    std::string mavenCall = "mvn -v > /dev/null 2>&1";
     
     if(system(mavenCall.c_str()) == 0) {
         return;
