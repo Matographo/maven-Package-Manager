@@ -20,41 +20,17 @@ int Maven::install(std::vector<std::string> packages) {
 }
 
 int Maven::uninstall(std::string package) {
-    std::string homePath = getenv("HOME");
-    std::string pathToPackage = homePath + "/.m2/repository/";
-    std::string innerPath;
-    std::string versionPath;
-    int cut = package.find_last_of(":");
-    
-    if(cut != std::string::npos) {
-        versionPath = package.substr(cut + 1);
-    }
-    
-    innerPath = package.substr(0, cut);
-    innerPath = innerPath.replace(innerPath.begin(), innerPath.end() ,":", "/");
-    innerPath = innerPath.replace(innerPath.begin(), innerPath.end() ,".", "/");
-    
-    std::string mvnPath = pathToPackage + "/" + innerPath + "/" + versionPath;
-    
-    std::cout << "path to delete: " << mvnPath << std::endl;
-    
-    if(std::filesystem::exists(mvnPath)) {
-        std::filesystem::remove_all(mvnPath);
-    }
-
+    std::cout << "maven does not support uninstalling packages" << std::endl;
     return 0;
 }
 
 int Maven::uninstall(std::vector<std::string> packages) {
-    int result = 0;
-    for(std::string package : packages) {
-        result += this->uninstall(package);
-    }
-    return result;
+    std::cout << "maven does not support uninstalling packages" << std::endl;
+    return 0;
 }
 
 int Maven::update(std::string package) {
-    return this->uninstall(package) + this->install(package);
+    return this->install(package);
 }
 
 int Maven::update(std::vector<std::string> packages) {
